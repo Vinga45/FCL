@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Притулок та зоомагазин для котів. Допоможіть знайти дім для Жорика, Бориса, Шурика та Шури!">
+    <title>FCL - ForCatsLover | Притулок для котів</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <header>
+        <h1>ForCatsLover 🐱</h1>
+        <nav aria-label="Головна навігація">
+            <a href="#home">Головна</a>
+            <a href="#shop">Магазин</a>
+            <a href="#adopt">Приютити</a>
+            <a href="#donate">Підтримати</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Анімований кіт -->
+        <div class="animka" aria-hidden="true">
+            <img src="https://preview.redd.it/random-question-but-does-anyone-have-versions-of-this-cat-v0-ya8qikz9kn0f1.png?auto=webp&s=c2fdba9a3904ab3bec9e7367e380f66343c2929a" 
+                 alt="Милий анімований кіт" 
+                 loading="lazy">
+        </div>
+
+        <!-- Привітання -->
+        <section id="home" class="welcome">
+            <h2>💖 Ласкаво просимо!</h2>
+            <p>Ваш затишний куточок для щастя вусатих! Знайдіть ідеальний стильний одяг, корми та нового члена родини.</p>
+        </section>
+
+        <!-- Коти у притулку -->
+        <section id="adopt" class="reviews">
+            <h2>🏡 Коти і кішки у притулку</h2>
+            <p class="subtitle">Кожен з них мріє про люблячу родину. Можливо, ви станете їхнім другом?</p>
+            
+            <div class="review-cards">
+                <article class="card">
+                    <img src="https://learn.logikaschool.com/uploads/student/5854276/695a4ced2135a.jpg" 
+                         alt="Рудий кіт Жорик" 
+                         loading="lazy">
+                    <h3>Кіт Жорик</h3>
+                    <p>Життєрадісний, веселий, ласкавий кіт. Знайдений на вулиці.</p>
+                    <button class="adopt-btn" data-cat="Жорик">Я хочу його забрати! 💚</button>
+                </article>
+
+                <article class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU2-iO__cV31hHr03gCRARMEKfZIx9jeRU3A&s" 
+                         alt="Маленьке кошеня Борис" 
+                         loading="lazy">
+                    <h3>Кошеня Борис</h3>
+                    <p>Ще мале кошеня, але знає що треба ходити в лоток. Підкинутий невідомо ким.</p>
+                    <button class="adopt-btn" data-cat="Борис">Я хочу його забрати! 💚</button>
+                </article>
+
+                <article class="card">
+                    <img src="https://learn.logikaschool.com/uploads/student/5854276/695a458a031af.jpg" 
+                         alt="Сірий кіт Шурик" 
+                         loading="lazy">
+                    <h3>Кіт Шурик</h3>
+                    <p>Хатній ленивець. До притулку жив у магазині поруч. Найперший житель.</p>
+                    <button class="adopt-btn" data-cat="Шурик">Я хочу його забрати! 💚</button>
+                </article>
+
+                <article class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCcEkzL-GwfrtjoAb_9IYoXE8B7P-W9AyLVw&s" 
+                         alt="Киця Шура" 
+                         loading="lazy">
+                    <h3>Киця Шура</h3>
+                    <p>Молода киця, залякана але грайлива. Відібрана у дітей, які знущалися над нею.</p>
+                    <button class="adopt-btn" data-cat="Шура">Я хочу її забрати! 💚</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Форма підтримки -->
+        <section id="donate" class="donate-section">
+            <h2>💰 Підтримайте притулок</h2>
+            <p>Ваша допомога рятує життя! Кожна гривня йде на корм, лікування та утримання тварин.</p>
+            
+            <div class="donate-options">
+                <button class="donate-btn" data-amount="50">50 грн</button>
+                <button class="donate-btn" data-amount="100">100 грн</button>
+                <button class="donate-btn" data-amount="200">200 грн</button>
+                <button class="donate-btn custom">Своя сума</button>
+            </div>
+
+            <div class="card-info">
+                <p class="card-number">
+                    Картка: <span id="card" onclick="copyCard()">5168 7520 2984 2222</span>
+                    <button onclick="copyCard()" class="copy-btn" title="Копіювати номер картки">📋</button>
+                </p>
+                <p class="thank-you" id="thanks" style="display: none;">Дякуємо за підтримку! ❤️</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025-2026 Шишковський Олександр</p>
+        <p>Сюди наче хтось дивиться? 👀</p>
+        <p class="grosi">Ну якщо подивився, кинь гроників: <span onclick="copyCard()">5168 7520 2984 2222</span></p>
+    </footer>
+
+    <script>
+        // Копіювання номера картки
+        function copyCard() {
+            const cardNumber = "5168752029842062";
+            navigator.clipboard.writeText(cardNumber).then(() => {
+                const thanks = document.getElementById('thanks');
+                thanks.style.display = 'block';
+                setTimeout(() => thanks.style.display = 'none', 3000);
+            });
+        }
+
+        // Обробка кнопок усиновлення
+        document.querySelectorAll('.adopt-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const catName = this.dataset.cat;
+                alert(`Дякуємо за бажання забрати ${catName}! 🐱\n\nЗв'яжіться з нами:\n📞 +380 96 897 36 52\n📧 forcatslover@example.com`);
+            });
+        });
+
+        // Обробка кнопок донатів
+        document.querySelectorAll('.donate-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const amount = this.dataset.amount || prompt('Введіть суму:');
+                if (amount) {
+                    alert(`Дякуємо! Ви обрали донат ${amount} грн 💚\n\nКартка: 5168 7520 2984 2222`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
