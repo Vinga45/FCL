@@ -1,0 +1,406 @@
+/* Палітра: https://coolors.co/0a210f-688b58-6b2b06-c5cbd3-404e5c */
+
+/* CSS змінні */
+:root {
+    --bg-main: #C5CBD3;
+    --nav-bg: #404E5C;
+    --nav-hover: #373F51;
+    --footer-bg: #373F51;
+    --card-bg: #fff;
+    --text-dark: #333;
+    --text-light: wheat;
+    --accent-green: #688B58;
+    --accent-orange: #6B2B06;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --shadow-hover: rgba(0, 0, 0, 0.3);
+}
+
+/* Скидання стилів */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+/* Основні стилі */
+body {
+    background: var(--bg-main);
+    color: var(--text-dark); 
+    font-size: 20px;
+    font-family: 'Brush Script MT', 'Brush Script Std', cursive;
+    line-height: 1.6;
+}
+
+/* Контейнер */
+main {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Заголовки */
+h1, h2, h3 {
+    text-align: center;
+    margin: 15px 0;
+}
+
+h2 {
+    margin-top: 30px;
+    font-size: 2rem;
+}
+
+p {
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Навігація */
+nav {
+    background-color: var(--nav-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin: 10px auto;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+nav a:hover,
+nav a:focus {
+    background-color: var(--nav-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+/* Анімація кота */
+.animka {
+    width: 100px;
+    height: 100px;
+    margin: 40px auto;
+    position: relative;
+    animation: catPlay 6s ease-in-out infinite;
+    transform-origin: center;
+    will-change: transform;
+}
+
+.animka img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 8px 20px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.animka:hover img {
+    border-radius: 20%;
+    animation-play-state: paused;
+    cursor: pointer;
+    box-shadow: 0 12px 30px var(--shadow-hover);
+}
+
+@keyframes catPlay {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    10% { transform: translateY(-30px) rotate(-10deg) scale(1.1); }
+    20% { transform: translateY(0) translateX(60px) rotate(15deg) scale(0.95); }
+    30% { transform: translateY(-50px) translateX(100px) rotate(-20deg) scale(1.2); }
+    40% { transform: translateY(10px) translateX(40px) rotate(360deg) scale(1); }
+    50% { transform: translateY(-20px) translateX(-80px) rotate(-15deg) scale(1.15); }
+    60% { transform: translateY(0) translateX(-120px) rotate(10deg) scale(0.9); }
+    70% { transform: translateY(-40px) translateX(-50px) rotate(-30deg) scale(1.1); }
+    80% { transform: translateY(0) translateX(30px) rotate(20deg) scale(1); }
+    90% { transform: translateY(-15px) rotate(0deg) scale(1.05); }
+}
+
+/* Секція привітання */
+.welcome {
+    background: linear-gradient(135deg, var(--accent-green), var(--nav-bg));
+    color: #fff;
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin: 30px 0;
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.welcome h2 {
+    margin-top: 0;
+}
+
+/* Секція котів */
+.reviews {
+    background-color: var(--footer-bg);
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+    margin: 30px 0;
+    border-radius: 15px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.review-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px var(--shadow-hover);
+}
+
+.card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid var(--accent-green);
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card h3 {
+    margin: 15px 0 10px;
+    color: var(--nav-bg);
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Кнопки усиновлення */
+.adopt-btn {
+    background: linear-gradient(135deg, var(--accent-green), #0A210F);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+.adopt-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow-hover);
+    background: linear-gradient(135deg, #0A210F, var(--accent-green));
+}
+
+.adopt-btn:active {
+    transform: translateY(0);
+}
+
+/* Секція донатів */
+.donate-section {
+    background: linear-gradient(135deg, var(--accent-orange), var(--accent-green));
+    color: #fff;
+    padding: 50px 20px;
+    border-radius: 15px;
+    margin: 30px 0;
+    text-align: center;
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.donate-section h2 {
+    margin-top: 0;
+}
+
+.donate-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.donate-btn {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--accent-orange);
+    border: 3px solid #fff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+.donate-btn:hover {
+    background-color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--shadow-hover);
+}
+
+.card-info {
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card-number {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.card-number span {
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.card-number span:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.copy-btn:hover {
+    transform: scale(1.3);
+}
+
+.thank-you {
+    color: #FFD700;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 15px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Футер */
+footer {
+    background-color: var(--footer-bg);
+    padding: 40px 20px;
+    margin-top: 50px;
+    box-shadow: 0 -4px 10px var(--shadow);
+}
+
+footer p {
+    color: var(--text-light);
+    margin: 10px 0;
+}
+
+.grosi {
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
+
+footer p span {
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+footer p span:hover {
+    color: #FFD700;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .animka {
+        width: 80px;
+        height: 80px;
+    }
+    
+    @keyframes catPlay {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-20px) scale(1.1); }
+    }
+    
+    .review-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .donate-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .donate-btn {
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .card-number {
+        font-size: 1rem;
+    }
+}
