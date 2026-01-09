@@ -53,27 +53,29 @@ p {
 nav {
     background-color: var(--nav-bg);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     padding: 15px;
     margin: 10px auto;
     flex-wrap: wrap;
+    box-shadow: 0 4px 10px var(--shadow);
 }
 
 nav a {
     text-decoration: none;
     color: #fff;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: 8px;
     transition: all 0.3s ease;
+    font-size: 1.1rem;
 }
 
 nav a:hover,
 nav a:focus {
-    font-size: 25px;
     background-color: var(--nav-hover);
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow);
 }
 
 /* Анімація кота */
