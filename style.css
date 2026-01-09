@@ -1,0 +1,197 @@
+/* Палітра: https://coolors.co/0a210f-688b58-6b2b06-c5cbd3-404e5c */
+
+/* CSS змінні для кольорів */
+:root {
+    --bg-main: #C5CBD3;
+    --nav-bg: #404E5C;
+    --nav-hover: #373F51;
+    --footer-bg: #373F51;
+    --text-light: wheat;
+    --shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* Скидання стилів */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+/* Основні стилі */
+body {
+    background: var(--bg-main);
+    color: #000; 
+    font-size: 20px;
+    font-family: 'Brush Script MT', 'Brush Script Std', cursive; 
+    line-height: 1.6;
+}
+
+/* Контейнер */
+main {
+    padding: 20px;
+    max-width: min(1200px, 90%);
+    margin: 20px auto;
+}
+
+/* Заголовки */
+h1, h2, h3 {
+    text-align: center;
+    margin: 15px 0;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+/* Параграфи */
+p {
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Навігація */
+nav {
+    background-color: var(--nav-bg);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    margin: 10px auto;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus {
+    font-size: 25px;
+    background-color: var(--nav-hover);
+    transform: scale(1.05);
+}
+
+/* Анімація кота */
+.animka {
+    width: 100px;
+    height: 100px;
+    margin: 40px auto;
+    position: relative;
+    animation: catPlay 6s ease-in-out infinite;
+    transform-origin: center;
+    will-change: transform;
+}
+
+.animka img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 8px 20px var(--shadow);
+    transition: border-radius 0.3s ease;
+    display: block;
+}
+
+.animka:hover img {
+    border-radius: 20%;
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+@keyframes catPlay {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg) scale(1); 
+    }
+    10% { 
+        transform: translateY(-30px) rotate(-10deg) scale(1.1); 
+    }
+    20% { 
+        transform: translateY(0) translateX(60px) rotate(15deg) scale(0.95); 
+    }
+    30% { 
+        transform: translateY(-50px) translateX(100px) rotate(-20deg) scale(1.2); 
+    }
+    40% { 
+        transform: translateY(10px) translateX(40px) rotate(360deg) scale(1); 
+    }
+    50% { 
+        transform: translateY(-20px) translateX(-80px) rotate(-15deg) scale(1.15); 
+    }
+    60% { 
+        transform: translateY(0) translateX(-120px) rotate(10deg) scale(0.9); 
+    }
+    70% { 
+        transform: translateY(-40px) translateX(-50px) rotate(-30deg) scale(1.1); 
+    }
+    80% { 
+        transform: translateY(0) translateX(30px) rotate(20deg) scale(1); 
+    }
+    90% { 
+        transform: translateY(-15px) rotate(0deg) scale(1.05); 
+    }
+}
+
+/* Футер */
+footer {
+    background-color: var(--footer-bg);
+    padding: 40px 20px;
+    margin-top: 50px;
+}
+
+footer p {
+    color: var(--text-light);
+}
+
+.grosi {
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+footer p span {
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+footer p span:hover {
+    color: #FFD700;
+    text-decoration: underline;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+    
+    nav a:hover {
+        font-size: 20px;
+    }
+    
+    .animka {
+        width: 80px;
+        height: 80px;
+    }
+    
+    @keyframes catPlay {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-20px) scale(1.1); }
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+}
