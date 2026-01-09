@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин - ForCatsLover</title>
+    </head>
+
+<body>
+    <header>
+        <h1>🐱 ForCatsLover</h1>
+        <nav>
+            <a href="#home">Головна</a>
+            <a href="#shop">Магазин</a>
+            <a href="#shelter">Приютити</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="animka">
+            <img src="https://preview.redd.it/random-question-but-does-anyone-have-versions-of-this-cat-v0-ya8qikz9kn0f1.png?auto=webp&s=c2fdba9a3904ab3bec9e7367e380f66343c2929a" 
+                 alt="Милий кіт" 
+                 loading="lazy">
+        </section>
+
+        <div class="shop-header">
+            <h2>🛒 Наш магазин для котиків</h2>
+            <p>Кожна покупка допомагає тваринам з притулку!</p>
+        </div>
+
+        <div class="cart-summary">
+            <h3>🛍️ Кошик</h3>
+            <p>Товарів: <strong id="cart-count">0</strong></p>
+            <p>Сума: <strong id="cart-total">0</strong> грн</p>
+            <button class="cart-btn" onclick="viewCart()">Переглянути кошик</button>
+        </div>
+
+        <div class="category-filter">
+            <button class="filter-btn active" onclick="filterCategory('all')">Всі товари</button>
+            <button class="filter-btn" onclick="filterCategory('food')">🍗 Корми</button>
+            <button class="filter-btn" onclick="filterCategory('toys')">🎾 Іграшки</button>
+            <button class="filter-btn" onclick="filterCategory('clothes')">👕 Одяг</button>
+            <button class="filter-btn" onclick="filterCategory('accessories')">🎀 Аксесуари</button>
+        </div>
+
+        <div class="products-grid" id="products-grid"></div>
+
+        <div class="charity-banner">
+            <h3>💖 Дякуємо за вашу підтримку!</h3>
+            <p>20% від кожної покупки йде на допомогу нашим пухнастим друзям у притулку.</p>
+            <p>Разом ми робимо світ кращим для тварин! 🐾</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025-2026 Шишковський Олександр</p>
+        <p>Сюди наче хтось дивиться?</p>
+        <p class="grosi">Ну якщо подивився кинь гроників: <span>5168 7520 2984 2222</span></p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: 'Преміум корм Royal Cat', category: 'food', price: 450, emoji: '🍗', description: 'Збалансований корм для дорослих котів' },
+            { id: 2, name: 'Консерви з тунцем', category: 'food', price: 85, emoji: '🐟', description: 'Смачні консерви з натурального тунця' },
+            { id: 3, name: 'Сухий корм для кошенят', category: 'food', price: 380, emoji: '🍖', description: 'Спеціальний корм для малюків до 12 місяців' },
+            { id: 4, name: 'М\'яка іграшка миша', category: 'toys', price: 120, emoji: '🐭', description: 'М\'яка плюшева іграшка з котячою м\'ятою' },
+            { id: 5, name: 'Інтерактивна лазерна іграшка', category: 'toys', price: 250, emoji: '🔴', description: 'Автоматичний лазер для активних ігор' },
+            { id: 6, name: 'Дряпка-будиночок', category: 'toys', price: 890, emoji: '🏠', description: 'Багаторівнева дряпка з будиночком' },
+            { id: 7, name: 'Светр в\'язаний рожевий', category: 'clothes', price: 320, emoji: '🧶', description: 'Теплий светр для холодної пори року' },
+            { id: 8, name: 'Костюм супергероя', category: 'clothes', price: 280, emoji: '🦸', description: 'Веселий костюм для фотосесій' },
+            { id: 9, name: 'Плащик дощовик', category: 'clothes', price: 195, emoji: '☔', description: 'Водонепроникний плащ для прогулянок' },
+            { id: 10, name: 'Нашийник з дзвіночком', category: 'accessories', price: 150, emoji: '🔔', description: 'М\'який нашийник з безпечним замком' },
+            { id: 11, name: 'Миска керамічна', category: 'accessories', price: 220, emoji: '🥣', description: 'Стильна керамічна миска для їжі' },
+            { id: 12, name: 'Лежанка-подушка', category: 'accessories', price: 550, emoji: '🛏️', description: 'М\'яка та затишна лежанка' },
+            { id: 13, name: 'Органічний корм Eco Cat', category: 'food', price: 520, emoji: '🌿', description: 'Натуральний органічний корм без добавок' },
+            { id: 14, name: 'Тунель для гри', category: 'toys', price: 340, emoji: '🎪', description: 'Складний тунель для активних котів' },
+            { id: 15, name: 'Лоток-будиночок', category: 'accessories', price: 680, emoji: '🚽', description: 'Закритий туалет з фільтром запахів' },
+        ];
+
+        let cart = {};
+        let currentFilter = 'all';
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const filtered = currentFilter === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentFilter);
+            
+            grid.innerHTML = filtered.map(product => `
+                <div class="product-card" data-category="${product.category}">
+                    <div class="product-image">${product.emoji}</div>
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-description">${product.description}</div>
+                    <div class="product-price">${product.price} грн</div>
+                    <div class="product-actions">
+                        <div class="quantity-control">
+                            <button class="qty-btn" onclick="changeQty(${product.id}, -1)">−</button>
+                            <div class="qty-display" id="qty-${product.id}">1</div>
+                            <button class="qty-btn" onclick="changeQty(${product.id}, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            Додати
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function changeQty(productId, delta) {
+            const qtyEl = document.getElementById(`qty-${productId}`);
+            let qty = parseInt(qtyEl.textContent);
+            qty = Math.max(1, Math.min(99, qty + delta));
+            qtyEl.textContent = qty;
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const qty = parseInt(document.getElementById(`qty-${productId}`).textContent);
+            
+            if (!cart[productId]) {
+                cart[productId] = { ...product, quantity: 0 };
+            }
+            cart[productId].quantity += qty;
+            
+            updateCartSummary();
+            
+            // Анімація додавання
+            const btn = event.target;
+            btn.textContent = '✓ Додано!';
+            btn.style.background = '#0A210F';
+            setTimeout(() => {
+                btn.textContent = 'Додати';
+                btn.style.background = '';
+            }, 1000);
+        }
+
+        function updateCartSummary() {
+            const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            const total = Object.values(cart).reduce((sum, item) => sum + item.price * item.quantity, 0);
+            
+            document.getElementById('cart-count').textContent = count;
+            document.getElementById('cart-total').textContent = total;
+        }
+
+        function filterCategory(category) {
+            currentFilter = category;
+            
+            // Оновлення активної кнопки
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderProducts();
+        }
+
+        function viewCart() {
+            const items = Object.values(cart);
+            if (items.length === 0) {
+                alert('🛒 Ваш кошик порожній! Додайте товари до покупки.');
+                return;
+            }
+            
+            let message = '🛍️ Ваш кошик:\n\n';
+            items.forEach(item => {
+                message += `${item.emoji} ${item.name}\n`;
+                message += `   ${item.quantity} шт × ${item.price} грн = ${item.quantity * item.price} грн\n\n`;
+            });
+            
+            const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const charity = Math.round(total * 0.2);
+            
+            message += `📊 Загальна сума: ${total} грн\n`;
+            message += `💖 З них ${charity} грн піде на притулок!\n\n`;
+            message += 'Дякуємо за вашу доброту! 🐾';
+            
+            alert(message);
+        }
+
+        // Ініціалізація
+        renderProducts();
+    </script>
+</body>
+</html>
